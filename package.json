@@ -1,0 +1,18 @@
+{
+  "name": "SUSCTFrefactor",
+  "version": "1.0.0",
+  "description": "My wonderful Nuxt.js project",
+  "author": "uns3t",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0",
+    "element-ui": "^2.4.11"
+  },
+  "devDependencies": {}
+}
