@@ -23,7 +23,8 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    './assets/pure.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -40,7 +41,22 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
   ],
+
+  axios: {
+    proxy: true,
+    prefix: 'http://localhost:3000/api/',
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:3000',
+      pathRewrite: {
+        '^/api/': ''
+      }
+    }
+  },
+
   /*
   ** Build configuration
   */

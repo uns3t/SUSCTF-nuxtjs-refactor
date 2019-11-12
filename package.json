@@ -4,6 +4,11 @@
   "description": "My wonderful Nuxt.js project",
   "author": "uns3t",
   "private": true,
+  "config": {
+    "nuxt": {
+      "port": "8080"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -11,8 +16,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "echarts": "^4.4.0",
+    "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
-    "element-ui": "^2.4.11"
+    "vuex-persist": "^2.1.1"
   },
   "devDependencies": {}
 }

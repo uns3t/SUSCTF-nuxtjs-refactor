@@ -1,0 +1,58 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
+
+if (!window) { var window = {}; }
+if (!window.localStorage) { window.localStorage = {}; }
+if (!window.localStorage.getItem) { window.localStorage.getItem = function() {} }
+
+const vuexLocal = new VuexPersistence({
+    storage: window.localStorage
+})
+
+Vue.use(Vuex)   //显式引入vuex
+
+window.$store =()=>{
+  return new Vuex.Store({
+    plugins:[vuexLocal.plugin],
+    state: {
+        isLogin:false,
+        userInfo:{username:''},
+        accessToken:'',
+        // currentRouteName:''
+
+    },
+    mutations: {
+        //
+        login(state, accessToken){
+            state.isLogin = true
+            window.$axios.defaults.headers.common['Access-Token'] = accessToken
+            state.accessToken = accessToken
+        },
+        logout(state){
+            state.isLogin = false
+            window.$axios.defaults.headers.common['Access-Token'] = ''
+            state.accessToken = ''
+            window.$router.replace("/")
+        },
+        userInfo(state, userInfo){
+            state.userInfo = userInfo
+        },
+        resetPassword(state){
+            state.isLogin = false
+            window.$axios.defaults.headers.common['Access-Token'] = ''
+            // state.accessToken = ''
+            // window.$router.replace({name:'forget-password'})
+        },
+        setCurrentRouteName(state, routeName){
+            let { to } = routeName
+            state.currentRouteName = to.meta.displayName
+        },
+
+    },
+    actions: {
+
+    }
+})}
+
+export default window.$store
